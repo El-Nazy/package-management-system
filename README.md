@@ -5,14 +5,11 @@
 2. [Tech Stack](#tech-stack)
 3. [Prerequisites](#prerequisites)
 4. [Setup Instructions](#setup-instructions)
-5. [Environment Configuration](#environment-configuration)
-6. [Authentication Workflow](#authentication-workflow)
-7. [GraphQL API Reference](#graphql-api-reference)
-   - [User Authentication](#user-authentication)
-   - [Package Operations](#package-operations)
-8. [Error Handling](#error-handling)
-9. [Advanced Querying](#advanced-querying)
-10. [Troubleshooting](#troubleshooting)
+5. [Authentication Workflow](#authentication-workflow)
+6. [Package Operations](#package-operations)
+7. [Error Handling](#error-handling)
+8. [Advanced Querying](#advanced-querying)
+9. [Troubleshooting](#troubleshooting)
 
 ## Project Overview
 
