@@ -1,4 +1,4 @@
-import { allowAdmin, allowAdminOrActualUser, allowAnyone } from '../utils/access-utils'
+import { onlyAdmin, onlyAdminOrActualUser, anonymous } from '../utils/access-utils'
 import type { CollectionConfig, FieldAccess } from 'payload'
 
 export const Users: CollectionConfig = {
@@ -8,10 +8,10 @@ export const Users: CollectionConfig = {
   },
   auth: true,
   access: {
-    create: allowAnyone,
-    read: allowAnyone,
-    update: allowAdminOrActualUser,
-    delete: allowAdminOrActualUser,
+    create: anonymous,
+    read: anonymous,
+    update: onlyAdminOrActualUser,
+    delete: onlyAdminOrActualUser,
   },
   fields: [
     // Email added by default
@@ -22,7 +22,7 @@ export const Users: CollectionConfig = {
       options: ['user', 'admin'],
       defaultValue: 'user',
       access: {
-        update: allowAdmin,
+        update: onlyAdmin,
       },
     },
   ],
