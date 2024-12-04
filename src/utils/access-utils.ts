@@ -2,6 +2,8 @@ import { Access, FieldAccess, PayloadRequest } from 'payload'
 
 export const anonymous = () => true
 
+export const nobody = () => false
+
 export const onlyActualUser: Access = ({ req, id }) => req.user?.id === id
 
 export const onlyAdmin: Access & FieldAccess = ({ req }: { req: PayloadRequest }) =>
