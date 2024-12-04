@@ -1,5 +1,9 @@
-import { onlyAdmin, onlyAdminOrActualUser, anonymous, nobody } from '../utils/access-utils'
-import type { CollectionConfig, FieldAccess } from 'payload'
+import {
+  allowAdmin,
+  allowAdminOrActualUser as allowAdminOrActualUser,
+  allowAnonymous,
+} from '../utils/access-utils'
+import type { CollectionConfig } from 'payload'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -8,10 +12,10 @@ export const Users: CollectionConfig = {
   },
   auth: true,
   access: {
-    create: anonymous,
-    read: anonymous,
-    update: onlyAdminOrActualUser,
-    delete: onlyAdminOrActualUser,
+    create: allowAnonymous,
+    read: allowAnonymous,
+    update: allowAdminOrActualUser,
+    delete: allowAdminOrActualUser,
   },
   fields: [
     // Email added by default
@@ -21,9 +25,27 @@ export const Users: CollectionConfig = {
       type: 'select',
       options: ['user', 'admin'],
       defaultValue: 'user',
+      hooks: {
+        beforeChange: [
+          async (args) => {
+            // Make first user admin
+            if (
+              args.operation === 'create' &&
+              (await args.req.payload.db.collections['users'].estimatedDocumentCount()) === 0
+            ) {
+              return 'admin'
+            }
+
+            if (allowAdmin(args)) {
+              return args.value
+            }
+
+            return 'user'
+          },
+        ],
+      },
       access: {
-        create: onlyAdmin,
-        update: onlyAdmin,
+        update: allowAdmin,
       },
     },
   ],

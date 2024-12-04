@@ -1,13 +1,12 @@
-import { Access, FieldAccess, PayloadRequest } from 'payload'
+import { Access, FieldAccess } from 'payload'
 
-export const anonymous = () => true
+export const allowAnonymous = () => true
 
-export const nobody = () => false
+export const allowNobody = () => false
 
-export const onlyActualUser: Access = ({ req, id }) => req.user?.id === id
+export const allowActualUser: Access = ({ req, id }) => req.user?.id === id
 
-export const onlyAdmin: Access & FieldAccess = ({ req }: { req: PayloadRequest }) =>
-  req.user?.role === 'admin'
+export const allowAdmin: Access & FieldAccess = ({ req }) => req.user?.role === 'admin'
 
-export const onlyAdminOrActualUser: Access = (...args) =>
-  onlyAdmin(...args) || onlyActualUser(...args)
+export const allowAdminOrActualUser: Access = (...args) =>
+  allowAdmin(...args) || allowActualUser(...args)

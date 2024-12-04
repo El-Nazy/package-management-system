@@ -1,4 +1,4 @@
-import { onlyAdmin, anonymous } from '@/utils/access-utils'
+import { allowAdmin, allowAnonymous } from '@/utils/access-utils'
 import { CollectionConfig } from 'payload'
 
 export const Packages: CollectionConfig = {
@@ -24,13 +24,13 @@ export const Packages: CollectionConfig = {
       type: 'date',
       required: true,
       access: {
-        update: onlyAdmin,
+        update: allowAdmin,
       },
     },
   ],
   access: {
-    create: anonymous,
-    read: anonymous,
+    create: allowAnonymous,
+    read: allowAnonymous,
   },
   hooks: {
     beforeOperation: [
