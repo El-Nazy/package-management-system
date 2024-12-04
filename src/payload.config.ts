@@ -21,6 +21,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  serverURL: process.env.SERVER_URL,
   collections: [Users, Media, Packages],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

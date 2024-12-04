@@ -48,10 +48,7 @@ Copy the contents of .env.example over a `.env` file in the project root and mod
 # Payload CMS Configuration
 DATABASE_URI=mongodb://127.0.0.1/package-management-system
 PAYLOAD_SECRET=YOUR_SECRET_HERE
-
-# Admin User Setup (Optional)
-ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD=secure_admin_password
+SERVER_URL=localhost:3000
 ```
 
 ### 4. Start the Development Server
@@ -65,7 +62,7 @@ npm run dev
 
 ### 1. User Registration
 ```graphql
-# Write your query or mutation here
+# Write your query or mutation here (NB: the first user created would be made an admin)
 mutation {
   createUser(
     data: {
